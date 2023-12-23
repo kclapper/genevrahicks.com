@@ -1,0 +1,27 @@
+// Glaucose (light blue)
+// 567BCC
+
+// Caramel (light brown)
+// C97535
+
+// Mantis (light green)
+// 74C365
+
+$primary: #5279CB;
+$secondary: #CC7B3E;
+$danger: #EC4646;
+$info:  #74C365;
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+@include media-breakpoint-down(lg) {
+    #basic-info {
+        font-size: 2em;
+        line-height: 2;
+
+        h5  {
+            font-size: 2em;
+            font-weight: 350;
+        }
+    }
+}
