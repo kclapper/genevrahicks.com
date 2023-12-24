@@ -71,10 +71,10 @@ function Item({name, background, children}) {
 function Disclaimer({ title, background, children }) {
   const defaultColor = useContext(ColorContext);
   return <div>
-           <p className="text-center mt-2 mb-0 pb-2">
+           <p className="text-center lh-1 mt-4 mb-0 pb-2">
              { title }
-             <hr className="m-0" />
            </p>
+           <hr className="m-0 mb-2" />
            <ColorContext.Provider value={ background || defaultColor }>
              { children }
            </ColorContext.Provider>
@@ -125,20 +125,8 @@ export default function Home() {
                    <Item>Healthcare</Item>
                    <Item>Pet Food</Item>
                    <Item>Spotify</Item>
-                   <Item background={ lightYellow }>
-                     Gym Membership
-                   </Item>
-                   <Item background={ lightYellow }>
-                     Oportun
-                   </Item>
+                   <Item>Groceries</Item>
 
-                   <Disclaimer title="Replacements Only"
-                               background={ lightYellow }>
-                     <Item>Skincare</Item>
-                     <Item>Cleaning Products</Item>
-                     <Item>Personal Care</Item>
-                     <Item>Sewing Supplies</Item>
-                   </Disclaimer>
                  </Category>
 
                  <Category title="Yellow Light"
@@ -148,18 +136,25 @@ export default function Home() {
                    <Item>Yarn</Item>
                    <Item>Trips</Item>
                    <Item>New Phone</Item>
-                   <Item background={ lightRed }>
-                     Eating Out
-                   </Item>
-                   <Item background={ lightRed }>
-                     KJs
-                   </Item>
+                   <Item>Eating Out</Item>
+                   <Item>KJs</Item>
+                   <Item>Books</Item>
+                   <Item>Gym Membership</Item>
+                   <Item>Oportun</Item>
+
+                   <Disclaimer title="Replacements Only">
+                     <Item>Skincare</Item>
+                     <Item>Cleaning Products</Item>
+                     <Item>Personal Care</Item>
+                     <Item>Sewing Supplies</Item>
+                   </Disclaimer>
 
                    <Disclaimer title="For Moving Only" background={ lightBlue }>
                      <Item>Furniture</Item>
                      <Item>Lighting</Item>
                      <Item>Kitchen</Item>
                      <Item>Record Player</Item>
+                     <Item>Decor</Item>
                    </Disclaimer>
                  </Category>
 
@@ -177,16 +172,8 @@ export default function Home() {
                    <Item>Impulse Purchases</Item>
                    <Item>Incense</Item>
                    <Item>New Subscriptions</Item>
-
-                   <Item name="Decor" background={ lightBlue }>
-                     For Moving Only
-                   </Item>
-                   <Item background={ lightYellow }>
-                     Books
-                   </Item>
-                   <Item background={ lightYellow }>
-                     New Supplements
-                   </Item>
+                   <Item>Alcohol</Item>
+                   <Item>New Supplements</Item>
                  </Category>
                </Row>
              </Container>
