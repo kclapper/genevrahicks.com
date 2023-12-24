@@ -38,6 +38,14 @@ export class BoggleController {
     letters[14] = this.randomPick("TOWTOA");
     letters[15] = this.randomPick("REYLTT");
 
+    for (let i = 0; i < length; i++) {
+      let j = Math.floor(Math.random() * length);
+
+      let temp = letters[i];
+      letters[i] = letters[j];
+      letters[j] = temp;
+    }
+
     return letters;
   }
 
