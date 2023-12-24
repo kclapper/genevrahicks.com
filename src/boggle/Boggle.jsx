@@ -23,38 +23,55 @@ function Board() {
   const [letters, setLetters] = useState(controller.getLetters());
   const [endTime, setEndTime] = useState(new Date());
   const [msLeft, setMsLeft] = useState(msUntil(endTime));
-  const [alarm, setAlarm] = useState(null);
+  const [inProgress, setInProgress] = useState(false);
 
   useEffect(() => {
     const handler = (event) => {
       setLetters(event.detail.letters);
       setEndTime(event.detail.endTime);
       setMsLeft(msUntil(event.detail.endTime));
+      setInProgress(true);
     }
     controller.addEventListener('gameStart', handler);
-    controller.addEventListener('gameOver', handler);
 
     return () => {
       controller.removeEventListener('gameStart', handler);
-      controller.removeEventListener('gameOver', handler);
     }
-  }, [setLetters, setEndTime]);
-
+  }, [setLetters, setEndTime, setMsLeft]);
 
   useEffect(() => {
-    if (msLeft > 0) {
-      setTimeout(() => {
+    const handler = (event) => {
+      setLetters(event.detail.letters);
+      setEndTime(event.detail.endTime);
+      setMsLeft(0);
+      setInProgress(false);
+    }
+    controller.addEventListener('gameOver', handler);
+
+    return () => {
+      controller.removeEventListener('gameOver', handler);
+    }
+  }, [setLetters, setEndTime, setMsLeft, setInProgress]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (inProgress && msLeft > 0) {
         const nextMs = msUntil(endTime);
 
         setMsLeft(nextMs);
 
-        if (nextMs <= 0) {
+        if (nextMs <= 0 && inProgress) {
+          setInProgress(false);
           const alarm = new Audio(new URL('./alarm.wav', import.meta.url));
           alarm.play();
         }
-      }, 950);
+      }
+    }, 950);
+
+    return () => {
+      clearTimeout(timeout);
     }
-  }, [setMsLeft, msLeft]);
+  }, [setMsLeft, msLeft, setInProgress]);
 
   const lettersPerRow = 4;
   let rows = [];
@@ -71,21 +88,25 @@ function Board() {
     }
   }
 
+  const startButton = <Button onClick={ () => controller.startNewGame() } size="lg">
+                        Start
+                      </Button>
+
+  const stopButton = <Button onClick={ () => controller.endGame() }
+                             size="lg"
+                             variant="danger">
+                       Stop
+                     </Button>
+
   return <div>
            <CountDown miliseconds={ msLeft }/>
 
            { rows }
 
            <div className="d-flex flex-row justify-content-center pt-4">
-             <Button onClick={ () => controller.startNewGame() } size="lg">
-                Start
-             </Button>
-             <Button onClick={ () => controller.endGame() }
-                     size="lg"
-                     variant="danger"
-                     className="ms-4">
-                Stop
-             </Button>
+
+             { inProgress ? stopButton : startButton }
+
            </div>
          </div>
 }
