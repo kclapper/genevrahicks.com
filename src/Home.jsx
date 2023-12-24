@@ -191,7 +191,7 @@ export default function Home() {
                </Row>
              </Container>
 
-             <div className="h-100" />
+             <div className="h-50" />
 
            </PageContent>
          </StrictMode>;
