@@ -123,9 +123,13 @@ export default function Home() {
                            background={ lightGreen }
                            itemBackground={ green }>
                    <Item>Healthcare</Item>
-                   <Item>Pet Food</Item>
+                   <Item>Pet Care</Item>
                    <Item>Spotify</Item>
                    <Item>Groceries</Item>
+                   <Item>Car Maintenance</Item>
+                   <Item>Gas</Item>
+                   <Item>Rent</Item>
+                   <Item>Utilities</Item>
 
                  </Category>
 
@@ -141,6 +145,7 @@ export default function Home() {
                    <Item>Books</Item>
                    <Item>Gym Membership</Item>
                    <Item>Oportun</Item>
+                   <Item>Gifts</Item>
 
                    <Disclaimer title="Replacements Only">
                      <Item>Skincare</Item>
@@ -174,6 +179,7 @@ export default function Home() {
                    <Item>New Subscriptions</Item>
                    <Item>Alcohol</Item>
                    <Item>New Supplements</Item>
+                   <Item>Doordash</Item>
                  </Category>
                </Row>
              </Container>

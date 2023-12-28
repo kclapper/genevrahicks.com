@@ -1,5 +1,10 @@
+
+interface Controller {
+
+}
+
 export class BoggleController {
-  static #instance = null;
+  private static instance = null;
 
   static getInstance() {
     if (BoggleController.#instance == null) {
