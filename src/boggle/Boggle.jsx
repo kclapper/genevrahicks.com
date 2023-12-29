@@ -11,7 +11,7 @@ import './Boggle.scss';
 
 import PageContent from '../components/PageContent';
 
-import { BoggleController } from './Controller';
+import { BoggleController } from './BoggleController';
 
 function msUntil(date) {
   return Math.max(date - Date.now(), 0);
