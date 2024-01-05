@@ -1,23 +1,27 @@
-export class BoggleController {
-  static #instance = null;
+export class BoggleController implements Controller {
+  private static instance?: BoggleController;
 
-  static getInstance() {
-    if (BoggleController.#instance == null) {
-      BoggleController.#instance = new BoggleController();
+  public static getInstance() {
+    if (BoggleController.instance == undefined) {
+      BoggleController.instance = new BoggleController();
     }
-    return BoggleController.#instance;
+    return BoggleController.instance;
   }
 
-  constructor() {
+  private letters: string[];
+  private endTime: Date;
+  private listeners: Record<GameEvent, Set<Listener>>;
+
+  private constructor() {
     this.letters = this.generateLetters();
-    this.endTime = Date.now();
+    this.endTime = new Date();
     this.listeners = {
       gameOver: new Set(),
       gameStart: new Set()
     };
   }
 
-  generateLetters() {
+  public generateLetters() {
     const length = 16;
     const letters = new Array(length);
 
@@ -49,7 +53,7 @@ export class BoggleController {
     return letters;
   }
 
-  randomPick(array) {
+  randomPick(array: string | string[]) {
     return array[Math.floor(Math.random() * array.length)];
   }
 
@@ -85,23 +89,23 @@ export class BoggleController {
     this.updateListeners('gameOver', event);
   }
 
-  updateListeners(eventType, event) {
+  updateListeners(eventType: GameEvent, event: CustomEvent) {
     for (const listener of this.listeners[eventType]) {
       listener(event);
     }
   }
 
-  addEventListener(eventName, listener) {
-    if (this.listeners[eventName] == undefined) {
+  addEventListener(eventType: GameEvent, listener: Listener) {
+    if (this.listeners[eventType] == undefined) {
       return;
     }
-    this.listeners[eventName].add(listener);
+    this.listeners[eventType].add(listener);
   }
 
-  removeEventListener(eventName, listener) {
-    if (this.listeners[eventName] == undefined) {
+  removeEventListener(eventType: GameEvent, listener: Listener) {
+    if (this.listeners[eventType] == undefined) {
       return;
     }
-    this.listeners[eventName].delete(listener);
+    this.listeners[eventType].delete(listener);
   }
 }
