@@ -108,7 +108,7 @@ export default function Home() {
                </p>
 
                <p className="mb-0">
-                 Below I've detail the things I'm allowed to buy this year. I've
+                 Below I've detailed the things I'm allowed to buy this year. I've
                  split it up into "Green Light", "Yellow Light", and "Red Light"
                  categories. The "Green Light" section contains things I'm allowed to buy without
                  restriction. The "Yellow Light" section contains things I can buy
