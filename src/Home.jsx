@@ -6,10 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import './Home.scss';
-
 import Text from './components/Text';
 import PageContent from './components/PageContent';
+
+import "./Home.scss";
 
 const ColorContext = createContext("white");
 
